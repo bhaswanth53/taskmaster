@@ -10,7 +10,7 @@
                     </button>
                 </div>
             </div>
-            <div class="uk-width-3-4@s" v-if="today == false">
+            <div class="uk-width-1-2@s" v-if="today == false">
                 <div class="uk-grid-match" uk-grid>
                     <div class="uk-width-1-2@m">
                         <div class="uk-margin">

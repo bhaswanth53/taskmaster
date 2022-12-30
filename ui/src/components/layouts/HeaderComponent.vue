@@ -31,13 +31,13 @@
 
 <style>
     .cusnav {
-        height: 50px;
+        height: 30px;
         padding: 5px;
         background-color: #0e3899 !important;
     }
 
     .cusnav .uk-navbar-nav>li>a {
-        min-height: 50px;
+        min-height: 30px;
         text-transform: none;
         font-size: 20px;
         color: #fff;

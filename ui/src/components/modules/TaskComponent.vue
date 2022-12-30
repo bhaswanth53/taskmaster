@@ -42,7 +42,7 @@
                 <button class="add-button uk-form-icon uk-form-icon-flip" v-on:click="createTask">
                     <i class="fa fa-plus"></i>
                 </button>
-                <input type="text" class="uk-input" placeholder="Task" v-model="task" />
+                <input type="text" class="uk-input task-input" placeholder="Add Task..." v-model="task" />
             </div>
         </div>
     </div>
@@ -149,7 +149,7 @@
     .task-card {
         background-color: #fff;
         margin: 10px 0px;
-        padding: 15px;
+        padding: 5px;
         border-radius: 5px;
     }
     .status-dropdown {
@@ -188,5 +188,8 @@
         color: #fff !important;
         border: 0;
         cursor: pointer;
+    }
+    .task-input {
+        border: 0 !important;
     }
 </style>
