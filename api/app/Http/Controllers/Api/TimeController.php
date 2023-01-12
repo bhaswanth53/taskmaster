@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 use App\Models\Time;
 
@@ -13,6 +14,8 @@ class TimeController extends Controller
 {
     public function listTimes(Request $request)
     {
+        $minutes = 0;
+
         $start_date = $request->has('start_date') ? Carbon::parse($request->input('start_date')) : Carbon::today();
         $end_date = $request->has('end_date') ? Carbon::parse($request->input('end_date')) : NULL;
         $today = ($request->has('today') && (boolean) $request->input('today') != false) ? Carbon::today() : NULL;
@@ -27,9 +30,33 @@ class TimeController extends Controller
                             $q->whereDate('date', '<=', $end_date);
                         })
                         ->orderBy('created_at', 'ASC')
-                        ->get();
+                        ->get()->map(function($time) {
+                            $minutes = Carbon::parse($time->end)->diffInMinutes(Carbon::parse($time->start));
+                            $total_time = CarbonInterval::minutes($minutes)->cascade()->forHumans();
 
-        return response($times);
+                            return collect([
+                                'id' => $time->id,
+                                'date' => $time->date,
+                                'start' => $time->start,
+                                'end' => $time->end,
+                                'description' => $time->description,
+                                'created_at' => $time->created_at,
+                                'updated_at' => $time->updated_at,
+                                'minutes' => $minutes,
+                                'total_time' => $total_time
+                            ]);
+                        });
+
+        $total_minutes = $times->sum('minutes');
+        $time_spent = CarbonInterval::minutes($total_minutes)->cascade()->forHumans();
+
+        return response([
+            'times' => $times,
+            'total' => [
+                'minutes' => $total_minutes,
+                'time' => $time_spent
+            ]
+        ]);
     }
 
     public function addTime(Request $request)
