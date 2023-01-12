@@ -24,6 +24,12 @@ class Time {
 
         return axios.post(url, formData)
     }
+
+    static delete(id) {
+        var url = host + '/api/time/' + id
+
+        return axios.delete(url)
+    }
 }
 
 export default Time
