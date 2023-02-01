@@ -83,7 +83,7 @@
         },
         methods: {
             getTimes() {
-                var time = Time.getTimes(false, this.start_date, this.end_date)
+                var time = Time.getTimes(this.today, this.start_date, this.end_date)
                 time.then((response) => {
                     this.data = response.data.times
                     this.total = response.data.total
