@@ -2,6 +2,11 @@
     <div>
         <div uk-grid>
             <div class="uk-width-1-4">
+                <DateFilter
+                    :date="date"
+                    :handleDate="handleDate"
+                    :size="'uk-width-1-1'"
+                />
                 <div class="list" v-for="(item, i) in data" v-bind:key="i">
                     <table class="list-item uk-table uk-table-small">
                         <tr>
@@ -35,9 +40,13 @@
 <script>
     import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
     import Note from '../../models/note'
+    import DateFilter from '../DateFilter.vue'
 
     export default {
         name: 'NoteComponent',
+        components: {
+            DateFilter
+        },
         data() {
             return {
                 editor: ClassicEditor,
@@ -50,16 +59,30 @@
                 },
                 today: true,
                 start_date: "",
-                end_date: ""
+                end_date: "",
+                date: ""
             }
         },
         mounted() {
             console.log('Note component is mounted')
+            this.getToday()
             this.getNotes()
         },
         methods: {
+            getToday() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+
+                this.date = yyyy + '-' + mm + '-' + dd;
+            },
+            handleDate(e) {
+                this.date = e.target.value
+                this.getNotes()
+            },
             getNotes() {
-                var note = Note.getNotes(this.today, this.start_date, this.end_date)
+                var note = Note.getNotes(this.date)
                 note.then((response) => {
                     console.log(response.data)
                     this.data = response.data

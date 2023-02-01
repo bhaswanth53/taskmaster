@@ -1,13 +1,17 @@
 <template>
     <div>
         <h3>Tasks :</h3>
-        <FilterComponent
+        <!-- <FilterComponent
             :today="today"
             :start_date="start_date"
             :end_date="end_date"
             :handleToday="handleToday"
             :handleStart="handleStart"
             :handleEnd="handleEnd"
+        /> -->
+        <DateFilter
+            :date="date"
+            :handleDate="handleDate"
         />
         <div class="tasks-div" v-if="data.length > 0">
             <div class="task-card" v-for="(task, key) in data" v-bind:key="key">
@@ -50,14 +54,15 @@
 
 <script>
     import Task from '../../models/task'
-    import FilterComponent from '../FilterComponent.vue'
+    import DateFilter from '../DateFilter.vue'
 
     export default {
         name: 'TaskComponent',
         components: {
-            FilterComponent
+            DateFilter
         },
         mounted() {
+            this.getToday()
             this.getTasks()
         },
         data() {
@@ -66,12 +71,25 @@
                 start_date: "",
                 end_date: "",
                 data: [],
-                task: ""
+                task: "",
+                date: ""
             }
         },
         methods: {
+            getToday() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+
+                this.date = yyyy + '-' + mm + '-' + dd;
+            },
+            handleDate(e) {
+                this.date = e.target.value
+                this.getTasks()
+            },
             getTasks() {
-                var task = Task.getTasks(this.today, this.start_date, this.end_date)
+                var task = Task.getTasks(this.date)
                 task.then((response) => {
                     this.data = response.data.data
                 }).catch((error) => {

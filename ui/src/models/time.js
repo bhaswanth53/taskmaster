@@ -2,12 +2,10 @@ import axios from 'axios'
 import { host } from '../utils'
 
 class Time {
-    static getTimes(today, start_date, end_date) {
+    static getTimes(date) {
         var url = host + '/api/time/list'
         let formData = {
-            today: today,
-            start_date: start_date,
-            end_date: end_date
+            date: date
         }
 
         return axios.post(url, formData)

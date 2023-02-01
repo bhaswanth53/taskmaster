@@ -1,13 +1,17 @@
 <template>
     <div>
         <h3>Timelogs :</h3>
-        <FilterComponent
+        <!-- <FilterComponent
             :today="today"
             :start_date="start_date"
             :end_date="end_date"
             :handleToday="handleToday"
             :handleStart="handleStart"
             :handleEnd="handleEnd"
+        /> -->
+        <DateFilter
+            :date="date"
+            :handleDate="handleDate"
         />
 
         <div class="time-divs padding-vertical" v-if="data.length > 0">
@@ -44,7 +48,7 @@
                 <div class="uk-width-1-6@s">
                     <input type="time" class="time-input uk-input" v-model="end" placeholder="end" />
                 </div>
-                <div class="uk-width-1-4@s">
+                <div class="uk-width-1-2@s">
                     <input type="text" class="time-input uk-input" placeholder="description" v-model="description" />
                 </div>
                 <div class="uk-width-1-6@s">
@@ -57,15 +61,15 @@
 
 <script>
     import Time from '../../models/time'
-    import FilterComponent from '../FilterComponent.vue'
+    import DateFilter from '../DateFilter.vue'
 
     export default {
         name: 'TimeComponent',
         components: {
-            FilterComponent
+            DateFilter
         },
         mounted() {
-            console.log('Time component is mounted')
+            this.getToday()
             this.getTimes()
         },
         data() {
@@ -78,12 +82,25 @@
                 task: "",
                 start: "",
                 end: "",
-                description: ""
+                description: "",
+                date: ""
             }
         },
         methods: {
+            getToday() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+
+                this.date = yyyy + '-' + mm + '-' + dd;
+            },
+            handleDate(e) {
+                this.date = e.target.value
+                this.getTimes()
+            },
             getTimes() {
-                var time = Time.getTimes(this.today, this.start_date, this.end_date)
+                var time = Time.getTimes(this.date)
                 time.then((response) => {
                     this.data = response.data.times
                     this.total = response.data.total
