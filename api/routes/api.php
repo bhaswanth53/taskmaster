@@ -39,6 +39,7 @@ Route::controller(TimeController::class)->group(function() {
 Route::controller(NoteController::class)->group(function() {
     Route::post('note/list', 'listNotes');
     Route::post('note/create', 'createNote');
-    Route::get('note/content/{id}', 'viewContent');
+    Route::get('note/view/{id}', 'viewContent');
+    Route::post('note/update/{id}', 'updateNote');
     Route::delete('note/{id}', 'deleteNote');
 });
