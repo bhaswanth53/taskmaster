@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="uk-margin uk-width-1-3">
+        <div class="uk-margin" :class="size ?? ' uk-width-1-3'">
             <label class="uk-form-label">Date :</label>
             <input type="date"
-                    class="uk-input uk-form-small"
+                    class="uk-input"
                     v-on:change="handleDate"
                     :value="date" />
         </div>
@@ -15,7 +15,8 @@
         name: 'DateFilter',
         props: [
             'date',
-            'handleDate'
+            'handleDate',
+            'size'
         ]
     }
 </script>

@@ -69,9 +69,8 @@
             DateFilter
         },
         mounted() {
-            console.log('Time component is mounted')
-            this.getTimes()
             this.getToday()
+            this.getTimes()
         },
         data() {
             return {

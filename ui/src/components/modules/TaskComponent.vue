@@ -62,8 +62,8 @@
             DateFilter
         },
         mounted() {
-            this.getTasks()
             this.getToday()
+            this.getTasks()
         },
         data() {
             return {
