@@ -28,26 +28,3 @@
         }
     }
 </script>
-
-<style>
-    .cusnav {
-        height: 30px;
-        padding: 5px;
-        background-color: #0e3899 !important;
-    }
-
-    .cusnav .uk-navbar-nav>li>a {
-        min-height: 30px;
-        text-transform: none;
-        font-size: 20px;
-        color: #fff;
-    }
-
-    .cusnav .uk-navbar-nav > li > a:hover {
-        color: #fff;
-    }
-
-    .cusnav .uk-navbar-nav > li > a.active {
-        border-bottom: 2px solid #fff;
-    }
-</style>

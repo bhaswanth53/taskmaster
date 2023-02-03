@@ -1,0 +1,165 @@
+:root {
+    --primary: #0e3899;
+    --white: #ffffff;
+    --info: #0d5891;
+    --warning: #e8861e;
+    --danger: #e00221;
+    --success: #027a0c;
+    --body: #e3e7e8;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--body);
+}
+
+.padding-vertical {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* ? Navbar Component */
+.cusnav {
+    height: 40px;
+    padding: 5px;
+    background-color: var(--primary) !important;
+}
+
+.cusnav .uk-navbar-nav>li>a {
+    min-height: 30px;
+    text-transform: none;
+    font-size: 20px;
+    color: var(--white);
+}
+
+.cusnav .uk-navbar-nav > li > a:hover {
+    color: var(--white);
+}
+
+.cusnav .uk-navbar-nav > li > a.active {
+    border-bottom: 2px solid var(--white);
+}
+
+/* ? Note Component */
+.list {
+    /* padding: 10px; */
+    background-color: var(--white);
+    font-size: 18px;
+    margin: 2px;
+}
+
+.note-button {
+    cursor: pointer;
+}
+
+.note-button.view {
+    background-color: var(--primary);
+    color: var(--white);
+    border: 0;
+    padding: 5px 10px;
+}
+
+.add-button {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* ? Task Component */
+.task-card {
+    background-color: var(--white);
+    margin: 10px 0px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.status-dropdown {
+    padding: 0 !important;
+}
+.status-dropdown .uk-nav>li>a {
+    padding: 5px;
+}
+.delete-button {
+    border: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    color: var(--white);
+    background-color: var(--danger);
+    margin-left: 5px;
+}
+.status-button {
+    border: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    color: var(--white);
+}
+.status-button.todo {
+    background-color: var(--info);
+}
+.status-button.in_progress {
+    background-color: var(--warning);
+}
+.status-button.finished {
+    background-color: var(--success);
+}
+.add-button {
+    background-color: var(--primary);
+    color: var(--white) !important;
+    border: 0;
+    cursor: pointer;
+}
+.task-input {
+    border: 0 !important;
+}
+
+/* ? Time Component */
+.log-button {
+    background-color: var(--white);
+    font-weight: bold !important;
+}
+
+.time-logs {
+    margin: 10px 0px;
+}
+
+.time-card {
+    /* background-color: #fff; */
+    padding: 5px;
+}
+
+.add-button {
+    background-color: var(--primary);
+    color: var(--white) !important;
+    border: 0;
+    cursor: pointer;
+}
+
+.description {
+    background-color: var(--white);
+    padding: 7px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #808080;
+}
+
+.time-label {
+    font-size: 20px;
+    color: #000;
+}
+
+.time-label .time {
+    color: var(--primary);
+}
+
+/* .timetable thead {
+    background-color: var(--primary);
+}
+.timetable thead tr th {
+    color: var(--white);
+} */
+
+.timetable thead tr th {
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}

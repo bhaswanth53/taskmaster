@@ -14,45 +14,47 @@
             :handleDate="handleDate"
         />
 
-        <div class="time-divs padding-vertical" v-if="data.length > 0">
+        <div class="time-divs padding-vertical">
             <div class="time-label" v-if="total">
-                <p v-if="total.time">Total Time : <span class="time">{{ total.time }}</span></p>
+                <p v-if="data.length > 0 && total.time">Total Time : <span class="time">{{ total.time }}</span></p>
             </div>
 
-            <div class="time-logs" v-for="(time, key) in data" v-bind:key="key">
-                <div class="uk-grid-match uk-flex-middle" uk-grid>
-                    <div class="uk-width-1-6@s">
-                        <button class="uk-button log-button">{{ time.start }}</button>
-                    </div>
-                    <div class="uk-width-1-6@s">
-                        <button class="uk-button log-button">{{ time.end }}</button>
-                    </div>
-                    <div class="uk-width-1-2@s">
-                        <p class="description" v-if="time.description">{{ time.description }}</p>
-                        <p class="description" v-else>No description!</p>
-                    </div>
-                    <div class="uk-width-1-6@s">
-                        <div>
-                            <button class="delete-button" v-on:click="deleteTime(time.id)"><i class="fa fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="time-card">
-            <div class="uk-grid-match" uk-grid>
-                <div class="uk-width-1-6@s">
-                    <input type="time" class="time-input uk-input" v-model="start" placeholder="Start" />
-                </div>
-                <div class="uk-width-1-6@s">
-                    <input type="time" class="time-input uk-input" v-model="end" placeholder="end" />
-                </div>
-                <div class="uk-width-1-2@s">
-                    <input type="text" class="time-input uk-input" placeholder="description" v-model="description" />
-                </div>
-                <div class="uk-width-1-6@s">
-                    <button class="uk-button uk-button-small add-button" v-on:click="createTime">Add</button>
+            <div class="uk-card uk-card-default">
+                <div class="uk-responsive">
+                    <table class="uk-table uk-table-divider uk-table-middle uk-width-1-1 timetable">
+                        <thead>
+                            <tr>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(time, key) in data" v-bind:key="key">
+                                <td>{{ time.start }}</td>
+                                <td>{{ time.end }}</td>
+                                <td>{{ time.description }}</td>
+                                <td>
+                                    <button class="delete-button" v-on:click="deleteTime(time.id)"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="time" class="time-input uk-input" v-model="start" placeholder="Start" />
+                                </td>
+                                <td>
+                                    <input type="time" class="time-input uk-input" v-model="end" placeholder="end" />
+                                </td>
+                                <td>
+                                    <input type="text" class="time-input uk-input" placeholder="description" v-model="description" />
+                                </td>
+                                <td>
+                                    <button class="uk-button add-button" v-on:click="createTime"><i class="fa fa-plus"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -158,43 +160,3 @@
         }
     }
 </script>
-
-<style>
-    .log-button {
-        background-color: #fff;
-        font-weight: bold !important;
-    }
-
-    .time-logs {
-        margin: 10px 0px;
-    }
-
-    .time-card {
-        /* background-color: #fff; */
-        padding: 5px;
-    }
-
-    .add-button {
-        background-color: #0e3899;
-        color: #fff !important;
-        border: 0;
-        cursor: pointer;
-    }
-
-    .description {
-        background-color: #fff;
-        padding: 7px;
-        font-weight: 600;
-        font-size: 14px;
-        color: #808080;
-    }
-
-    .time-label {
-        font-size: 20px;
-        color: #000;
-    }
-
-    .time-label .time {
-        color: #0e3899;
-    }
-</style>

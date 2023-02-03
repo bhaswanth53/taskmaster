@@ -140,28 +140,3 @@
         }
     }
 </script>
-
-<style>
-    .list {
-        /* padding: 10px; */
-        background-color: #ffffff;
-        font-size: 18px;
-        margin: 2px;
-    }
-
-    .note-button {
-        cursor: pointer;
-    }
-
-    .note-button.view {
-        background-color: #0e3899;
-        color: #fff;
-        border: 0;
-        padding: 5px 10px;
-    }
-
-    .add-button {
-        background-color: #0e3899;
-        color: #fff;
-    }
-</style>

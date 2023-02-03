@@ -37,14 +37,4 @@
 
 <style>
   @import "../node_modules/uikit/dist/css/uikit.min.css";
-
-  body {
-    min-height: 100vh;
-    background-color: #e3e7e8;
-  }
-
-  .padding-vertical {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
 </style>
