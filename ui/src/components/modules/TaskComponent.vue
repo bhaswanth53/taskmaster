@@ -26,7 +26,7 @@
                                 <span v-else-if="task.status == 'in_progress'">In Progress</span>
                                 <span v-else-if="task.status == 'finished'">Finished</span>
                             </button>
-                            <div uk-dropdown="mode: click" class="status-dropdown">
+                            <div uk-dropdown="mode: hover" class="status-dropdown">
                                 <ul class="uk-nav uk-dropdown-nav">
                                     <li><a href="javascript:void(0);" v-on:click="updateStatus(task.id, 'todo')">Todo</a></li>
                                     <li><a href="javascript:void(0);" v-on:click="updateStatus(task.id, 'in_progress')">In Progress</a></li>
@@ -162,52 +162,3 @@
         }
     }
 </script>
-
-<style>
-    .task-card {
-        background-color: #fff;
-        margin: 10px 0px;
-        padding: 5px;
-        border-radius: 5px;
-    }
-    .status-dropdown {
-        padding: 0 !important;
-    }
-    .status-dropdown .uk-nav>li>a {
-        padding: 5px;
-    }
-    .delete-button {
-        border: 0;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 3px;
-        color: #fff;
-        background-color: #e00221;
-        margin-left: 5px;
-    }
-    .status-button {
-        border: 0;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 3px;
-        color: #fff;
-    }
-    .status-button.todo {
-        background-color: #0d5891;
-    }
-    .status-button.in_progress {
-        background-color: #e8861e;
-    }
-    .status-button.finished {
-        background-color: #027a0c;
-    }
-    .add-button {
-        background-color: #0e3899;
-        color: #fff !important;
-        border: 0;
-        cursor: pointer;
-    }
-    .task-input {
-        border: 0 !important;
-    }
-</style>
