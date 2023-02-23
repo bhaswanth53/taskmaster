@@ -73,4 +73,19 @@ class TaskController extends Controller
             'message' => 'Task has been deleted successfully'
         ]);
     }
+
+    public function moveTask($id)
+    {
+        $task = Task::find($id);
+        if($task) {
+            $task->update([
+                'task_date' => Carbon::today()
+            ]);
+        }
+
+        return response([
+            'error' => false,
+            'message' => 'Task has been moved successfully'
+        ]);
+    }
 }

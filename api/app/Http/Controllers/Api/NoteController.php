@@ -111,4 +111,19 @@ class NoteController extends Controller
             'message' => 'Note has been deleted successfully!'
         ]);
     }
+
+    public function moveNote($id)
+    {
+        $note = Note::find($id);
+        if($note) {
+            $note->update([
+                'date' => Carbon::today()
+            ]);
+        }
+
+        return response([
+            'error' => false,
+            'message' => 'Task has been moved successfully'
+        ]);
+    }
 }

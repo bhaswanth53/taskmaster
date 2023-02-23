@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
 class Note extends Model
 {
     use HasFactory;
@@ -18,4 +20,11 @@ class Note extends Model
         'date',
         'note'
     ];
+
+    protected $appends = ['is_today'];
+
+    public function getIsTodayAttribute()
+    {
+        return Carbon::parse($this->created_at)->isToday();
+    }
 }

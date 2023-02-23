@@ -38,6 +38,12 @@ class Note {
 
         return axios.post(url, formData)
     }
+
+    static moveNote(id) {
+        var url = host + '/api/note/' + id + '/move'
+
+        return axios.delete(url)
+    }
 }
 
 export default Note

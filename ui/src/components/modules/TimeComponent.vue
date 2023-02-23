@@ -36,6 +36,7 @@
                                 <td>{{ time.end }}</td>
                                 <td>{{ time.description }}</td>
                                 <td>
+                                    <button class="move-button" title="Move to today" v-if="time.is_today == false"><i class="fa fa-arrow-circle-right"></i></button>
                                     <button class="delete-button" v-on:click="deleteTime(time.id)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>

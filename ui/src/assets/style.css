@@ -163,3 +163,14 @@ body {
     font-weight: 600;
     letter-spacing: 0.3px;
 }
+
+/* Move button */
+.move-button {
+    border: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    color: var(--white);
+    margin-right: 5px;
+    background-color: #eb7734;
+}

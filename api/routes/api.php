@@ -27,6 +27,7 @@ Route::controller(TaskController::class)->group(function() {
     Route::post('task/create', 'createTask');
     Route::post('task/status/update', 'updateStatus');
     Route::delete('task/{id}', 'deleteTask');
+    Route::delete('task/{id}/move', 'moveTask');
 });
 
 Route::controller(TimeController::class)->group(function() {
@@ -34,6 +35,7 @@ Route::controller(TimeController::class)->group(function() {
     Route::post('time/create', 'addTime');
     Route::post('time/update', 'updateTime');
     Route::delete('time/{id}', 'deleteTime');
+    Route::delete('time/{id}/move', 'moveTime');
 });
 
 Route::controller(NoteController::class)->group(function() {
@@ -42,4 +44,5 @@ Route::controller(NoteController::class)->group(function() {
     Route::get('note/view/{id}', 'viewContent');
     Route::post('note/update/{id}', 'updateNote');
     Route::delete('note/{id}', 'deleteNote');
+    Route::delete('note/{id}/move', 'moveNote');
 });

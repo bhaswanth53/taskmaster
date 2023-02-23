@@ -36,6 +36,12 @@ class Task {
 
         return axios.delete(url)
     }
+
+    static moveTask(id) {
+        var url = host + '/api/task/' + id + '/move'
+
+        return axios.delete(url)
+    }
 }
 
 export default Task

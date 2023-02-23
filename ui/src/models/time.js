@@ -28,6 +28,12 @@ class Time {
 
         return axios.delete(url)
     }
+
+    static moveTime(id) {
+        var url = host + '/api/time/' + id + '/move'
+
+        return axios.delete(url)
+    }
 }
 
 export default Time

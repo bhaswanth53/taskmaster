@@ -21,6 +21,7 @@
                     </div>
                     <div class="uk-width-1-3 uk-text-right">
                         <div class="uk-inline">
+                            <button class="move-button" title="Move to today" v-if="task.is_today == false" v-on:click="moveTask(task.id)"><i class="fa fa-arrow-circle-right"></i></button>
                             <button class="status-button" v-bind:class="task.status">
                                 <span v-if="task.status == 'todo'">Todo</span>
                                 <span v-else-if="task.status == 'in_progress'">In Progress</span>
@@ -131,6 +132,20 @@
             },
             deleteTask(id) {
                 var task = Task.deleteTask(id)
+                task.then((response) => {
+                    if(!response.data.error) {
+                        this.getTasks()
+                    }
+                }).catch((error) => {
+                    if(error.response) {
+                        console.log(error.response.data)
+                    } else {
+                        console.log(error)
+                    }
+                })
+            },
+            moveTask(id) {
+                var task = Task.moveTask(id)
                 task.then((response) => {
                     if(!response.data.error) {
                         this.getTasks()

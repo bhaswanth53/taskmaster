@@ -12,8 +12,11 @@
                         <tr>
                             <td>{{ item.name }}</td>
                             <td class="uk-text-right">
-                                <button class="note-button view" v-on:click="viewNote(item.id)"><i class="fa fa-info"></i></button>
-                                <!-- <button class="note-button"><i class="fa fa-trash"></i></button> -->
+                                <div class="uk-flex">
+                                    <button class="move-button" title="Move to today" v-if="item.is_today == false"><i class="fa fa-arrow-circle-right"></i></button>
+                                    <button class="note-button view" v-on:click="viewNote(item.id)"><i class="fa fa-info"></i></button>
+                                    <!-- <button class="note-button"><i class="fa fa-trash"></i></button> -->
+                                </div>
                             </td>
                         </tr>
                     </table>

@@ -32,6 +32,8 @@ class TimeController extends Controller
                                 'description' => $time->description,
                                 'created_at' => $time->created_at,
                                 'updated_at' => $time->updated_at,
+                                // 'is_today' => Carbon::parse($time->created_at)->isToday(),
+                                'is_today' => $time->is_today,
                                 'minutes' => $minutes,
                                 'total_time' => $total_time
                             ]);
@@ -88,6 +90,21 @@ class TimeController extends Controller
         return response([
             'error' => false,
             'message' => 'Timelog has been deleted successfully'
+        ]);
+    }
+
+    public function moveTime($id)
+    {
+        $time = Time::find($id);
+        if($time) {
+            $time->update([
+                'date' => Carbon::today()
+            ]);
+        }
+
+        return response([
+            'error' => false,
+            'message' => 'Task has been moved successfully'
         ]);
     }
 }
